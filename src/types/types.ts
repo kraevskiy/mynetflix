@@ -13,4 +13,6 @@ export type MovieType = {
 	poster_path: string;
 	vote_average: number;
 	vote_count: number;
+	adult?: boolean;
+	video?: boolean;
 }

@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from '@/lib/api/axios.ts';
 import apiRequests from '@/lib/api/api.requests.ts';
 import { MovieType } from '@/types/types.ts';
-
-const trancate = (text: string, n: number): string => {
-	return text.length > n ? text.substring(0, n-1) + '...' : text;
-}
-
-const backgroundBackDrop = (path: string) => `url(https://image.tmdb.org/t/p/original${path})`;
+import { getOriginalUrlImage, truncateText } from '@/helpers';
 
 const Banner = () => {
 	const [movie, setMovie] = useState<null | MovieType>(null);
@@ -23,10 +18,10 @@ const Banner = () => {
 	useEffect(() => {
 		fetchData();
 	}, []);
-	console.log(movie);
+
 	return (
 		<div className={classes.banner} style={{
-			backgroundImage: backgroundBackDrop(movie?.backdrop_path || '')
+			backgroundImage: `url(${getOriginalUrlImage(movie?.backdrop_path || '')})`
 		}}>
 			<div className={classes.banner__fadeBottom}/>
 
@@ -41,7 +36,7 @@ const Banner = () => {
 					</button>
 				</div>
 				<div className={classes.banner__description}>
-					{trancate(movie?.overview || '', 150)}
+					{truncateText(movie?.overview || '', 150)}
 				</div>
 			</div>
 		</div>
