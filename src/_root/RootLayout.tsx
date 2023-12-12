@@ -6,7 +6,6 @@ const RootLayout = () => {
 	return (
 		<div className={classes.root}>
 			<Nav />
-			{/*Banner*/}
 			<Outlet />
 		</div>
 	);
