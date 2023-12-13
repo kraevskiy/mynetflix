@@ -1,0 +1,56 @@
+.profile {
+  min-height: 100vh;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+
+  &__body {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__info {
+    display: flex;
+    gap: 25px
+  }
+
+  &__avatar {
+    height: 100px;
+  }
+
+  &__details {
+    h2 {
+      background-color: gray;
+      font-size: 15px;
+      padding: 15px 15px 15px 20px;
+    }
+  }
+
+  &__plans {
+    padding-top: 20px;
+    h3 {
+      border-bottom: 1px solid #282c2d;
+    }
+  }
+
+  &__signOut {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 5%;
+    width: 100%;
+    background-color: #e50914;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+}

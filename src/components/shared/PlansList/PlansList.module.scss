@@ -1,0 +1,27 @@
+.plans {
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 125px;
+    padding: 10px 0;
+  }
+
+  &__info {
+
+  }
+
+  &__button {
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #e50914;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    &IsActive {
+      cursor: not-allowed;
+      background-color: gray;
+    }
+  }
+}

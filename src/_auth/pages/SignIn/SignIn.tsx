@@ -1,13 +1,12 @@
+import {MouseEvent} from 'react';
 import classes from './SignIn.module.scss';
-import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SignInInputs, SignInSchema } from '@/lib/validation/sign-in.validation';
-import { paths } from '@/routes/paths.ts';
-import { signUpFirebase } from '@/lib/firebase/requests.ts';
+import { signInFirebase, signUpFirebase } from '@/lib/firebase/requests.ts';
 
 const SignIn= () => {
-	const {register, handleSubmit} = useForm<SignInInputs>({
+	const {register, handleSubmit, getValues, formState: {isValid}} = useForm<SignInInputs>({
 		resolver: zodResolver(SignInSchema),
 		defaultValues: {
 			email: '',
@@ -16,8 +15,16 @@ const SignIn= () => {
 	});
 
 	const submitHandler = async (data: SignInInputs) => {
-		const res = await signUpFirebase(data);
-		console.log(res);
+		await signInFirebase(data);
+	}
+
+	const submitSignUp = async (e: MouseEvent) => {
+		e.preventDefault();
+		e.stopPropagation();
+		if (isValid) {
+			const values = getValues();
+			await signUpFirebase(values);
+		}
 	}
 
 	return (
@@ -31,7 +38,8 @@ const SignIn= () => {
 						<input type="password" placeholder="Password" {...register('password')}/>
 						<button>Sign In</button>
 					</form>
-					<div>New to Netflix? <NavLink to={paths.signUp} >Sign up now.</NavLink></div>
+					{/*<div>New to Netflix? <NavLink to={paths.signUp} >Sign up now.</NavLink></div>*/}
+					<div>New to Netflix? <a href="#" onClick={submitSignUp}>Sign up now.</a></div>
 				</div>
 			</div>
 		</div>
